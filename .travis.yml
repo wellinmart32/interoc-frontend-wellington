@@ -1,0 +1,41 @@
+languaje: node_js
+
+cache:
+  directories:
+    - ./node_modules
+    - ~/.npm
+
+node_js:
+  - "12"
+
+git:
+  depth: 3
+
+script:
+  # - yarn lint # travis maneja yarn si usas npm no importa
+  - yarn test-headless # UnitTest
+  - yarn postinstall
+
+notification:
+  email:
+    reciepients:
+      - alcivar372@gmail.com
+    on_sucsess: always
+    on_failure: always
+
+deploy:
+  provider: heroku
+  skip_cleanup: true
+  keep_history: true
+  # COMMIT_MESSAGE: "Deploy del proyecto"
+  api_key:
+    4f403f0f-f1e0-4b2e-b051-6fce3c0def0e
+    # secure: "secretkey"
+  app: interoc-frontend-dev
+
+  on:
+    repo: josealcivar/interoc-frontend
+    # master: interoc-frontend-staging
+    # production: interoc-frontend-production
+  # local_dir: dist/
+  # target_branck:gh
